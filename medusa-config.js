@@ -65,6 +65,7 @@ module.exports = {
     jwt_secret: "Dung123#",
     store_cors: STORE_CORS,
     admin_cors: ADMIN_CORS,
+    cookie_secret: 'Dung123#'
   },
   plugins,
 };
