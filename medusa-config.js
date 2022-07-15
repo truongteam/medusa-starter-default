@@ -62,6 +62,7 @@ module.exports = {
     database_type: "postgres",
     // database_database: "./medusa-db.sql",
     // database_type: "sqlite",
+    jwt_secret: "Dung123#",
     store_cors: STORE_CORS,
     admin_cors: ADMIN_CORS,
   },
