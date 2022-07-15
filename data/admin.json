@@ -1,0 +1,10 @@
+{
+    "users": [
+        {
+          "email": "admin2@medusa-test.com",
+          "password": "supersecret",
+          "role": "admin",
+          "api_token": "test-token"
+        }
+    ]
+}
