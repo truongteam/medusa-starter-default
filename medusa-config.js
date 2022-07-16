@@ -23,7 +23,7 @@ try {
 }
 
 // CORS when consuming Medusa from admin
-const ADMIN_CORS = "https://hipc-admin.vercel.app/,http://localhost:7000";
+const ADMIN_CORS = "https://hipc-admin.vercel.app,http://localhost:7000";
 
 // CORS to avoid issues when consuming Medusa from a client
 const STORE_CORS = process.env.STORE_CORS || "https://storefront-truongteam.vercel.app,http://localhost:8000";
