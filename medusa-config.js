@@ -26,7 +26,7 @@ try {
 const ADMIN_CORS = "https://hipc-admin.vercel.app,http://localhost:7000";
 
 // CORS to avoid issues when consuming Medusa from a client
-const STORE_CORS = process.env.STORE_CORS || "https://storefront-truongteam.vercel.app,http://localhost:8000";
+const STORE_CORS = process.env.STORE_CORS || "https://hipc-storefront.vercel.app,http://localhost:8000";
 
 // Database URL (here we use a local database called medusa-development)
 const DATABASE_URL =
@@ -58,7 +58,7 @@ const plugins = [
       // config object passed when creating an instance of the MeiliSearch client
       config: {
         host: "https://test-landlord-search.onrender.com/",
-        apiKey: "Dung123",
+        apiKey: process.env.MEILISEARCH_API_KEY || "Dung123",
       },
       settings: {
         // index name
@@ -70,6 +70,15 @@ const plugins = [
       },
     },
   },
+  {
+    resolve: `medusa-file-cloudinary`,
+    options: {
+        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+        api_key: process.env.CLOUDINARY_API_KEY,
+        api_secret: process.env.CLOUDINARY_API_SECRET,
+        secure: true,
+    },
+  }
   // Uncomment to add Stripe support.
   // You can create a Stripe account via: https://stripe.com
   // {
@@ -82,6 +91,15 @@ const plugins = [
 ];
 
 module.exports = {
+  monitoring: {
+    uriPath: '/monitoring',
+    authentication: true,
+    onAuthenticate: function(req,username,password){
+      // simple check for username and password
+      return((username==='swagger-stats') 
+          && (password==='swagger-stats'));
+    }
+  },
   projectConfig: {
     redis_url: REDIS_URL,
     // For more production-like environment install PostgresQL
