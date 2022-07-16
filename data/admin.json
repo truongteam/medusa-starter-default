@@ -2,8 +2,7 @@
     "users": [
         {
           "email": "admin2@medusa-test.com",
-          "password": "supersecret",
-          "api_token": "test-token"
+          "password": "supersecret"
         }
     ]
 }
