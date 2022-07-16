@@ -23,7 +23,7 @@ try {
 }
 
 // CORS when consuming Medusa from admin
-const ADMIN_CORS = "https://fanciful-muffin-7a04dd.netlify.app";
+const ADMIN_CORS = "https://fanciful-muffin-7a04dd.netlify.app,http://localhost:7000";
 
 // CORS to avoid issues when consuming Medusa from a client
 const STORE_CORS = process.env.STORE_CORS || "https://storefront-truongteam.vercel.app,http://localhost:8000";
@@ -51,7 +51,25 @@ const plugins = [
       client_secret: process.env.PAYPAL_CLIENT_SECRET,
       auth_webhook_id: process.env.PAYPAL_AUTH_WEBHOOK_ID
     }
-  }
+  },
+  {
+    resolve: `medusa-plugin-meilisearch`,
+    options: {
+      // config object passed when creating an instance of the MeiliSearch client
+      config: {
+        host: "https://test-landlord-search.onrender.com/",
+        apiKey: "Dung123",
+      },
+      settings: {
+        // index name
+        products: {
+          // MeiliSearch's setting options to be set on a particular index
+          searchableAttributes: ["title", "description", "variant_sku"],
+          displayedAttributes: ["title", "description", "variant_sku"],
+        },
+      },
+    },
+  },
   // Uncomment to add Stripe support.
   // You can create a Stripe account via: https://stripe.com
   // {
