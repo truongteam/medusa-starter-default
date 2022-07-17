@@ -57,7 +57,7 @@ const plugins = [
     options: {
       // config object passed when creating an instance of the MeiliSearch client
       config: {
-        host: "https://test-landlord-search.onrender.com/",
+        host: "https://test-landlord-search.onrender.com",
         apiKey: process.env.MEILISEARCH_API_KEY || "Dung123",
       },
       settings: {
