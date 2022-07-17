@@ -78,7 +78,13 @@ const plugins = [
         api_secret: process.env.CLOUDINARY_API_SECRET,
         secure: true,
     },
-  }
+  },
+  {
+    resolve: `medusa-plugin-segment`,
+    options: {
+      write_key: process.env.SEGMENT_WRITE_KEY,
+    }
+}
   // Uncomment to add Stripe support.
   // You can create a Stripe account via: https://stripe.com
   // {
