@@ -6,14 +6,15 @@
   "license": "MIT",
   "scripts": {
     "seed": "medusa seed -f ./data/seed.json",
-    "build": "rm -rf dist && ./node_modules/.bin/tsc -p tsconfig.json",
-    "start": "npm run build && NODE_ENV=development node ./dist/main.js",
+    "build": "babel src -d dist --extensions \".ts,.js\"",
+    "start": "npm run build && NODE_ENV=development medusa develop",
     "start:watch": "nodemon --watch './src/**/*.ts' --exec 'ts-node' ./src/main.ts",
-    "start:prod": "npm run build && NODE_ENV=production node dist/main"
+    "start:prod": "npm run build && NODE_ENV=production medusa start"
   },
   "dependencies": {
     "@medusajs/medusa": "^1.3.4",
     "@medusajs/medusa-cli": "^1.3.1",
+    "class-validator": "^0.13.2",
     "medusa-extender": "^1.7.3",
     "medusa-file-cloudinary": "^1.0.1",
     "medusa-fulfillment-manual": "^1.1.31",
