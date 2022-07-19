@@ -2,6 +2,9 @@ import { Router } from "express"
 import bodyParser from "body-parser"
 import cors from "cors"
 import { projectConfig } from "../../medusa-config"
+import { LessThanOrEqual } from "typeorm"
+import { validator } from 'medusa-interfaces'
+import { AdminGetVariantsParams } from "../services/product-outstock-variant"
 
 export default () => {
   const router = Router()
@@ -41,6 +44,16 @@ export default () => {
       return res.json({
         product_reviews
       })
+    })
+  })
+
+  router.options("/admin/outstock_variants", cors(corsOptions))
+  router.get("/admin/outstock_variants", cors(corsOptions), async (req, res) => {
+    const productVariantService = req.scope.resolve("productOutstockVariantService")
+    
+    const result = await productVariantService.listAndCount(req.query)
+    return res.json({
+      variants: result
     })
   })
 
