@@ -21,9 +21,10 @@ export class ClerkController extends BaseController {
         )
     }
 
-    protected resolveService(req: Request) {
+    protected resolveService(req: Request, res: Response, next: NextFunction) {
         this.configModule = req.scope.resolve('configModule')
         this.customerService = req.scope.resolve('customerService')
+        next()
     }
 
     async handleAuth(req: WithAuthProp<Request>, res: Response, next: NextFunction) {
