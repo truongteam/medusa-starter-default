@@ -4,14 +4,17 @@ import { NextFunction, Request, Response } from 'express';
 import { BaseController } from "./base";
 import jwt from 'jsonwebtoken'
 import { ConfigModule } from '@medusajs/medusa/dist/types/global';
+import storeCors from '../middlewares/store-cors';
 export class ClerkController extends BaseController {
     private customerService: CustomerService;
     private configModule: ConfigModule;
     constructor(args) {
         super(args)
 
+        this.router.options('/store/clerk/auth', storeCors);
         this.router.post(
-            '/store/clerk/auth', 
+            '/store/clerk/auth',
+            storeCors,
             ClerkExpressRequireAuth,
             this.resolveService.bind(this),
             this.handleAuth.bind(this)
