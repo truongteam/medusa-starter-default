@@ -41,9 +41,9 @@ export class ClerkController extends BaseController {
                 })
             })
             const jwt_secret = this.configModule.projectConfig.jwt_secret
-            req.session.jwt = jwt.sign({ customer_id: customer.id }, jwt_secret!, {
+            res.cookie('connect.sid', jwt.sign({ customer_id: customer.id }, jwt_secret!, {
                 expiresIn: "30d",
-            })
+            }))
             res.json({ data: customer })
         } catch (error) { next(error) }
     }
