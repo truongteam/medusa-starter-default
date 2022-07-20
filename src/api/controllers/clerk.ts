@@ -45,6 +45,6 @@ export class ClerkController extends BaseController {
                 expiresIn: "30d",
             }))
             res.json({ data: customer })
-        } catch (error) { next(error) }
+        } catch (error) { res.status(400).json({ error }) }
     }
 }
