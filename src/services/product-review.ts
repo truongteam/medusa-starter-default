@@ -1,6 +1,7 @@
 import { BaseService } from "medusa-interfaces";
+import { IProductReviewService } from "../api/controllers/interfaces";
 
-class ProductReviewService extends BaseService {
+class ProductReviewService extends BaseService  implements IProductReviewService{
   constructor({ productReviewRepository, manager }) {
     super();
 

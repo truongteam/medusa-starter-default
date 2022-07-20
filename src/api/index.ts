@@ -1,61 +1,12 @@
-import { Router } from "express"
-import bodyParser from "body-parser"
-import cors from "cors"
-import { projectConfig } from "../../medusa-config"
-import { LessThanOrEqual } from "typeorm"
-import { validator } from 'medusa-interfaces'
-import { AdminGetVariantsParams } from "../services/product-outstock-variant"
+import { Router } from 'express'
+import { ClerkController } from './controllers/clerk';
+import { ProductReviewController } from "./controllers/product-review";
+import { ProductVariantController } from "./controllers/product-variant";
 
 export default () => {
   const router = Router()
-  const storeCorsOptions = {
-    origin: projectConfig.store_cors.split(","),
-    credentials: true,
-  }
-
-  router.get("/store/products/:id/reviews", cors(storeCorsOptions), (req, res) => {
-    const productReviewService = req.scope.resolve("productReviewService")
-    productReviewService.getProductReviews(req.params.id).then((product_reviews) => {
-      return res.json({
-        product_reviews
-      })
-    })
-  })
-
-  router.use(bodyParser.json())
-  router.options("/store/products/:id/reviews", cors(storeCorsOptions))
-  router.post("/store/products/:id/reviews", cors(storeCorsOptions), (req, res) => {
-    const productReviewService = req.scope.resolve("productReviewService")
-    productReviewService.addProductReview(req.params.id, req.body.data).then((product_review) => {
-      return res.json({
-        product_review
-      })
-    })
-  })
-
-  const corsOptions = {
-    origin: projectConfig.admin_cors.split(","),
-    credentials: true,
-  }
-  router.options("/admin/products/:id/reviews", cors(corsOptions))
-  router.get("/admin/products/:id/reviews", cors(corsOptions), async (req, res) => {
-    const productReviewService = req.scope.resolve("productReviewService")
-    productReviewService.getProductReviews(req.params.id).then((product_reviews) => {
-      return res.json({
-        product_reviews
-      })
-    })
-  })
-
-  router.options("/admin/outstock_variants", cors(corsOptions))
-  router.get("/admin/outstock_variants", cors(corsOptions), async (req, res) => {
-    const productVariantService = req.scope.resolve("productOutstockVariantService")
-    
-    const result = await productVariantService.listAndCount(req.query)
-    return res.json({
-      variants: result
-    })
-  })
-
+  new ProductReviewController(router);
+  new ProductVariantController(router);
+  new ClerkController(router);
   return router;
 }

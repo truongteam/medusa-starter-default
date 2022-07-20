@@ -6,6 +6,7 @@ import { EntityManager, LessThanOrEqual } from "typeorm";
 import { ProductVariantRepository } from "@medusajs/medusa/dist/repositories/product-variant";
 import { ProductVariant } from "@medusajs/medusa";
 import { FindConfig } from "@medusajs/medusa/dist/types/common";
+import { IProductOutstockVariantService } from "../api/controllers/interfaces";
 export class AdminGetVariantsParams {
     @IsString()
     @IsOptional()
@@ -22,7 +23,7 @@ export class AdminGetVariantsParams {
     offset?: number = 0
 }
 
-class ProductOutstockVariant extends BaseService {
+class ProductOutstockVariant extends BaseService implements IProductOutstockVariantService {
     private manager_: EntityManager
     private productVariantRepository_: typeof ProductVariantRepository
     constructor({ productVariantRepository, manager }) {
