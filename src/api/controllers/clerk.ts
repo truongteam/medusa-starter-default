@@ -44,7 +44,7 @@ export class ClerkController extends BaseController {
             res.cookie('connect.sid', jwt.sign({ customer_id: customer.id }, jwt_secret!, {
                 expiresIn: "30d",
             }))
-            res.json({ data: customer })
-        } catch (error) { res.status(400).json({ error }) }
+            return res.json({ data: customer })
+        } catch (error) { return res.status(400).json({ error }) }
     }
 }
