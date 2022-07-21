@@ -2,9 +2,10 @@ import cors from "cors"
 import { projectConfig } from "../../../medusa-config"
 
 const storeCorsOptions = {
-    origin: 'http://localhost:8000',
+    origin: projectConfig.store_cors.split(','),
     credentials: true,
 }
+export const storeMedusaCors = cors(storeCorsOptions);
 export const corss = (req, res, next) => {
     res.setHeader('access-control-allow-origin', projectConfig.store_cors.split(','))
     res.setHeader("access-control-allow-headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, Cookie");
