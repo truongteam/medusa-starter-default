@@ -153,3 +153,9 @@ Visit [docs.medusa-commerce.com](https://docs.medusa-commerce.com) for further g
     Docs
   </a>
 </p>
+```
+curl -H 'Content-Type:application/json' --cookie 'connect.sid=s%3ANm45zGPdFOCDt58h7yb5w-tx-D6rab1j.m7JqTfYFOV08YwP0c5U6dbHfvVxbTwWLmdsB9FX%2BCbk' 'http://localhost:9000/store/customers/me'
+
+connect.sid=s%3AKis8MYqg4okZoD01lc-QH45vRYdMoHGN.qGv5QqiumbnYblSZzI3kmTkfN7rCEIM03LP2W%2FbK0wY
+
+connect.sid=s%3AuRN3_FQ8HAup6oqOeCikYFqQ38YFRQWV.iDytR4UIWtFQwk%2F6Zj%2BlwAorQc2Yf6Cnbj6XwcYoVis

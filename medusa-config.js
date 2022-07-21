@@ -52,6 +52,7 @@ const plugins = [
       auth_webhook_id: process.env.PAYPAL_AUTH_WEBHOOK_ID
     }
   },
+  /*
   {
     resolve: `medusa-plugin-meilisearch`,
     options: {
@@ -70,6 +71,7 @@ const plugins = [
       },
     },
   },
+  */
   {
     resolve: `medusa-file-cloudinary`,
     options: {
